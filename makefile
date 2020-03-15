@@ -1,3 +1,7 @@
+.PHONY: destroy build password push
+
+# Common git commands
+CURRENT_BRANCH = `git rev-parse --abbrev-ref HEAD`
 
 # Brings down all containers.
 destroy:
