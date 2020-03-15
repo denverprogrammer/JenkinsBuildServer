@@ -10,3 +10,7 @@ build:
 
 password:
 	docker exec -c `tail /var/jenkins_home/secrets/initialAdminPassword`
+
+# Common way to push to github.
+push:
+	git push -u origin ${CURRENT_BRANCH}
