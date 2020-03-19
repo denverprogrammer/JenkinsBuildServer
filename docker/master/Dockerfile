@@ -1,10 +1,17 @@
 #Dockerfile
 
 # Starting off with the Jenkins base Image
-FROM jenkins/jenkins:latest
+FROM jenkins/jenkins:lts-alpine
  
-# Installing the plugins we need using the in-built install-plugins.sh script
-RUN /usr/local/bin/install-plugins.sh git matrix-auth workflow-aggregator docker-workflow blueocean credentials-binding
+# Installing the plugins we need using the built-in install-plugins.sh script
+RUN /usr/local/bin/install-plugins.sh \
+    git \
+    matrix-auth \
+    workflow-aggregator \
+    docker-workflow \
+    blueocean \
+    credentials-binding \
+    ansicolor
  
 # Setting up environment variables for Jenkins admin user
 ENV JENKINS_USER admin
