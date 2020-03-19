@@ -10,7 +10,7 @@ import time
 
 slave_jar = '/var/lib/jenkins/slave.jar'
 slave_name = os.environ['SLAVE_NAME'] if os.environ['SLAVE_NAME'] != '' else 'docker-slave-' + os.environ['HOSTNAME']
-jnlp_url = os.environ['JENKINS_URL'] + '/computer/' + slave_name + '/slave-agent.jnlp'
+jnlp_url = '%s/computer/%s/slave-agent.jnlp' % (os.environ['JENKINS_URL'], slave_name)
 slave_jar_url = os.environ['JENKINS_URL'] + '/jnlpJars/slave.jar'
 print(slave_jar_url)
 process = None
@@ -34,8 +34,7 @@ def slave_download(target):
     if os.path.isfile(slave_jar):
         os.remove(slave_jar)
 
-    loader = urllib.URLopener()
-    loader.retrieve(os.environ['JENKINS_URL'] + '/jnlpJars/slave.jar', '/var/lib/jenkins/slave.jar')
+    urllib.request.urlretrieve(os.environ['JENKINS_URL'] + '/jnlpJars/slave.jar', slave_jar)
 
 def slave_run(slave_jar, jnlp_url):
     params = [ 'java', '-jar', slave_jar, '-jnlpUrl', jnlp_url ]
@@ -62,29 +61,33 @@ def master_ready(url):
     except:
         return False
 
+
+
+
 while not master_ready(slave_jar_url):
-    print("Master not ready yet, sleeping for 10sec!")
+    print('Master not ready yet, sleeping for 10sec!')
     time.sleep(10)
 
 slave_download(slave_jar)
-print 'Downloaded Jenkins slave jar.'
+print('Downloaded Jenkins slave jar.')
 
 if os.environ['SLAVE_WORING_DIR']:
     os.setcwd(os.environ['SLAVE_WORING_DIR'])
 
 if os.environ['CLEAN_WORKING_DIR'] == 'true':
     clean_dir(os.getcwd())
-    print "Cleaned up working directory."
+    print('Cleaned up working directory.')
 
 if os.environ['SLAVE_NAME'] == '':
     slave_create(slave_name, os.getcwd(), os.environ['SLAVE_EXECUTORS'], os.environ['SLAVE_LABELS'])
-    print 'Created temporary Jenkins slave.'
+    print('Created temporary Jenkins slave.')
 
 process = slave_run(slave_jar, jnlp_url)
-print 'Started Jenkins slave with name "' + slave_name + '" and labels [' + os.environ['SLAVE_LABELS'] + '].'
+print('Started Jenkins slave with name "%s" and labels [%s].' % (slave_name, os.environ['SLAVE_LABELS']))
+
 process.wait()
 
-print 'Jenkins slave stopped.'
+print('Jenkins slave stopped.')
 if os.environ['SLAVE_NAME'] == '':
     slave_delete(slave_name)
-    print 'Removed temporary Jenkins slave.'
+    print('Removed temporary Jenkins slave.')
