@@ -20,3 +20,7 @@ build:
 
 password:
 	docker exec -c `tail /var/jenkins_home/secrets/initialAdminPassword`
+
+# Run unit tests agains slave.py
+test:
+	@python3 -m unittest discover docker/slave "*_test.py"
