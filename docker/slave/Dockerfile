@@ -3,15 +3,15 @@
 FROM ubuntu:18.04
  
 ENV COMPOSE_VERSION 1.8.1
-ENV JENKINS_URL "http://jenkins"
-ENV JENKINS_SLAVE_ADDRESS ""
-ENV JENKINS_USER "admin"
-ENV JENKINS_PASS "admin"
+ENV USER_NAME "admin"
+ENV USER_PASSWORD "admin"
+ENV MASTER_URL "http://jenkins:8080"
+ENV SLAVE_URL ""
 ENV SLAVE_NAME ""
 ENV SLAVE_SECRET ""
 ENV SLAVE_EXECUTORS "1"
 ENV SLAVE_LABELS "docker"
-ENV SLAVE_WORING_DIR ""
+ENV SLAVE_WORKING_DIR ""
 ENV CLEAN_WORKING_DIR "true"
 
 RUN apt-get update && apt-get install -y \ 
@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y \
     mkdir -p /var/lib/jenkins
 
 # Start-up script to attach the slave to the master
-ADD slave.py /var/lib/jenkins/slave.py
+ADD scripts/slave.py /var/lib/jenkins/slave.py
 
 WORKDIR /home/jenkins
 
