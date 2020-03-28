@@ -1,6 +1,6 @@
 #Dockerfile
 
-FROM ubuntu:18.04
+FROM alpine:latest
  
 ENV COMPOSE_VERSION 1.8.1
 ENV USER_NAME "admin"
@@ -14,23 +14,16 @@ ENV SLAVE_LABELS "docker"
 ENV SLAVE_WORKING_DIR ""
 ENV CLEAN_WORKING_DIR "true"
 
-RUN apt-get update && apt-get install -y \ 
-    # Install dependencies in the agent container
-    apt-transport-https \
+RUN apk update && apk add \ 
     ca-certificates \
-    openjdk-8-jre \
+    openjdk8-jre \
     curl \
+    py3-pip \
     python3 \
-    python3-pip \
-    git && \ 
+    git \ 
+    docker \
+    docker-compose && \
     pip3 install jenkins-webapi && \
-    # Install docker agent container
-    curl -fsSL https://get.docker.com -o get-docker.sh && \
-    sh get-docker.sh && \
-    rm get-docker.sh && \
-    # Install docker-compose in the agent container
-    curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose && \ 
     mkdir -p /home/jenkins && \
     mkdir -p /var/lib/jenkins
 
