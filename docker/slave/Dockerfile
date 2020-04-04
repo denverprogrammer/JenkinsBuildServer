@@ -28,8 +28,8 @@ RUN apk update && apk add \
     mkdir -p /var/lib/jenkins
 
 # Start-up script to attach the slave to the master
-ADD scripts/slave.py /var/lib/jenkins/slave.py
+ADD scripts /var/lib/jenkins/scripts
 
 WORKDIR /home/jenkins
 
-CMD [ "python3", "-u", "/var/lib/jenkins/slave.py" ]
+CMD [ "python3", "-u", "/var/lib/jenkins/scripts/slave.py" ]
