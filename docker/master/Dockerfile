@@ -2,7 +2,7 @@
 
 # Starting off with the Jenkins base Image
 FROM jenkins/jenkins:lts-alpine
- 
+
 # Installing the plugins we need using the built-in install-plugins.sh script
 RUN /usr/local/bin/install-plugins.sh \
     git \

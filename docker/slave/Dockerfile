@@ -22,6 +22,7 @@ RUN apk update && apk add \
     python3 \
     git \ 
     docker \
+    openssh-client \
     docker-compose && \
     pip3 install jenkins-webapi && \
     mkdir -p /home/jenkins && \
