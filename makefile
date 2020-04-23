@@ -11,7 +11,7 @@ NUKE_IT_NUKE_IT:
 
 # Brings down all containers.
 destroy:
-		docker-compose down --remove-orphans --volumes
+		docker-compose down
 
 # Builds all of the dev containers and starts the server.  
 # In your browser go to http://localhost to view webpage.
