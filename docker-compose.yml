@@ -31,4 +31,3 @@ services:
 volumes:
     jenkins-master:
     # jenkins-worker:
-        
