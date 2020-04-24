@@ -2,6 +2,7 @@
 
 version: '3.1'
 services:
+
     jenkins:
         container_name: jenkins
         image: localhost:5000/jenkins
@@ -10,6 +11,9 @@ services:
         ports:
             - '8080:8080'
             - '50000:50000'
+        volumes:
+            - jenkins-master:/var/jenkins_home
+
     jenkins-slave:
         container_name: jenkins-slave
         image: localhost:5000/jenkins-slave
@@ -23,3 +27,8 @@ services:
         depends_on:
             - jenkins
         restart: always
+
+volumes:
+    jenkins-master:
+    # jenkins-worker:
+        
