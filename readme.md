@@ -8,3 +8,5 @@
 [Docker Swarm Docs](https://docs.docker.com/engine/swarm/)
 [Docker Registry](https://docs.docker.com/registry/)
 [Docker + Jenkins + Behat example](https://code-maze.com/ci-jenkins-docker/)
+
+[Similar Setup](https://github.com/eea/eea.docker.jenkins)
