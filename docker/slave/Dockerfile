@@ -25,11 +25,7 @@ RUN apk update && apk add \
     openssh-client \
     docker-compose && \
     pip3 install jenkins-webapi && \
-    mkdir -p /home/jenkins && \
-    mkdir -p /var/lib/jenkins
-
-# Start-up script to attach the slave to the master
-ADD scripts /var/lib/jenkins/scripts
+    mkdir -p /home/jenkins
 
 WORKDIR /home/jenkins
 

@@ -59,8 +59,9 @@ class JenkinsSettings(object):
             raise Exception('SLAVE_LABELS is not defined in config.')
 
         if (
-            'SLAVE_WORKING_DIR' in config
-            and os.path.isdir(config['SLAVE_WORKING_DIR'])
+            'SLAVE_WORKING_DIR' in config and
+            config['SLAVE_WORKING_DIR'] and
+            os.path.isdir(config['SLAVE_WORKING_DIR'])
         ):
             self._slave_working_dir = config['SLAVE_WORKING_DIR']
         else:

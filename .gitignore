@@ -1,3 +1,2 @@
 .vscode
-docker/slave/scripts/__pycache__
-docker/slave/tests/__pycache__
+**/__pycache__
