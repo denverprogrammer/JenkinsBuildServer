@@ -60,7 +60,7 @@ class JenkinsSettings(object):
 
         if (
             'SLAVE_WORKING_DIR' in config
-            and os.path.isdir(config['CLEAN_WORKING_DIR'])
+            and os.path.isdir(config['SLAVE_WORKING_DIR'])
         ):
             self._slave_working_dir = config['SLAVE_WORKING_DIR']
         else:
