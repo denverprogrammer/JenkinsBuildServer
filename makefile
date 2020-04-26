@@ -11,7 +11,7 @@ NUKE_IT_NUKE_IT:
 
 # Brings down all containers.
 destroy:
-		docker-compose down
+		docker-compose down --remove-orphans --volumes
 
 # Builds all of the dev containers and starts the server.  
 # In your browser go to http://localhost to view webpage.
@@ -23,4 +23,4 @@ password:
 
 # Run unit tests agains slave.py
 test:
-	@python3 -m unittest discover docker/slave "*_test.py"
+	@python3 -m unittest discover . "*_test.py"
