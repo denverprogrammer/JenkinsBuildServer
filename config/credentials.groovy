@@ -18,8 +18,8 @@ def credentials = new UsernamePasswordCredentialsImpl(
   CredentialsScope.GLOBAL,
   'github-user',
   'Github username and api token',
-  'denverprogrammer',
-  '46db655ca3c21f2c8369810b3ffed81db670fd51'
+  env.GITHUB_USER,
+  env.GIT_API_TOKEN
 )
 
 // add credential to store
