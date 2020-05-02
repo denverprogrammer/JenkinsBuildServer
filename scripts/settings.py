@@ -10,11 +10,11 @@ class JenkinsSettings(object):
     _master_url = 'http://jenkins'
     _master_resource = '/jnlpJars/slave.jar'
     _slave_url = None
-    _slave_name = None
+    _slave_name = 'PHP'
     _slave_jar_file = '/var/lib/jenkins/slave.jar'
-    _slave_executors = 1
-    _slave_labels = 'docker'
-    _slave_working_dir = None
+    _slave_executors = 5
+    _slave_labels = 'PHP'
+    _slave_working_dir = '/home/jenkins'
     _clean_working_dir = True
     _start_agent_url = '%s/computer/%s/slave-agent.jnlp'
 

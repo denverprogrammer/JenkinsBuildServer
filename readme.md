@@ -10,3 +10,5 @@
 [Docker + Jenkins + Behat example](https://code-maze.com/ci-jenkins-docker/)
 
 [Similar Setup](https://github.com/eea/eea.docker.jenkins)
+[Groovy Scripts](https://github.com/cloudbees/jenkins-scripts)
+[Groovy Scripts](https://github.com/peterjenkins1/jenkins-scripts)
