@@ -12,9 +12,17 @@ services:
             - '8080:8080'
             - '50000:50000'
         environment:
-            - JENKINS_URL='http://jenkins:8080'
+            - JENKINS_HOME=${JENKINS_HOME}
+            - ADMIN_EMAIL=${ADMIN_EMAIL}
+            - JENKINS_URL=${JENKINS_URL}
+            - JENKINS_USER=${JENKINS_USER}
+            - JENKINS_PASS=${JENKINS_PASS}
+            - GITHUB_USER=${GITHUB_USER}
+            - GITHUB_PASS=${GITHUB_PASS}
+            - GIT_API_TOKEN=${GIT_API_TOKEN}
         volumes:
             - jenkins-master:/var/jenkins_home
+            - ./config:/usr/share/jenkins/ref/init.groovy.d/
 
     jenkins-slave:
         container_name: jenkins-slave
@@ -22,7 +30,7 @@ services:
         build:
             context: ./docker/slave
         environment:
-            - JENKINS_URL='http://jenkins:8080'
+            - JENKINS_URL="${JENKINS_URL}"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock  # Expose the docker daemon in the container
             - /home/jenkins:/home/jenkins # Avoid mysql volume mount issue
